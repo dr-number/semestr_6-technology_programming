@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Text;
+using System.Collections.Generic;
 
 namespace LarionovClassesMessages
 {
@@ -133,32 +134,37 @@ namespace LarionovClassesMessages
     {
         static void Main(string[] args)
         {
-            Factories factory1 = new("НПЗ№1", "Первый нефтеперерабатывающий завод");
-            Factories factory2 = new("НПЗ№2", "Второй нефтеперерабатывающий завод");
+            List<Factories> factories = new List<Factories>();
+            List<Units> units = new List<Units>();
+            List<Tanks> tanks = new List<Tanks>();
 
-            Console.WriteLine(factory1.getInfo());
-            Console.WriteLine(factory2.getInfo());
+            factories.Add(new("НПЗ№1", "Первый нефтеперерабатывающий завод"));
+            factories.Add(new("НПЗ№1", "Первый нефтеперерабатывающий завод"));
+            factories.Add(new("НПЗ№2", "Второй нефтеперерабатывающий завод"));
 
-            Units unit1 = new("ГФУ-2", "Газофракционирующая установка", factory1.Id);
-            Units unit2 = new("АВТ-6", "Атмосферно-вакуумная трубчатка", factory1.Id);
-            Units unit3 = new("АВТ-10", "Атмосферно-вакуумная трубчатка", factory2.Id);
+            units.Add(new("ГФУ-2", "Газофракционирующая установка", factories[0].Id));
+            units.Add(new("АВТ-6", "Атмосферно-вакуумная трубчатка", factories[0].Id));
+            units.Add(new("АВТ-10", "Атмосферно-вакуумная трубчатка", factories[1].Id));
 
-            Console.WriteLine(unit1.getInfo());
-            Console.WriteLine(unit2.getInfo());
+            tanks.Add(new("Резервуар 1", "Надземный - вертикальный", 1500, 2000, units[0].Id));
+            tanks.Add(new("Резервуар 2", "Надземный - горизонтальный", 2500, 3000, units[0].Id));
+            tanks.Add(new("Дополнительный резервуар 24", "Надземный - горизонтальный", 3000, 3000, units[1].Id));
+            tanks.Add(new("Резервуар 35", "Надземный - вертикальный", 3000, 3000, units[1].Id));
+            tanks.Add(new("Резервуар 47", "Подземный - двустенный", 4000, 5000, units[1].Id));
+            tanks.Add(new("Резервуар 256", "Подводный", 500, 500, units[2].Id));
 
-            Tanks tank1 = new("Резервуар 1", "Надземный - вертикальный", 1500, 2000, unit1.Id);
-            Tanks tank2 = new("Резервуар 2", "Надземный - горизонтальный", 2500, 3000, unit1.Id);
-            Tanks tank3 = new("Дополнительный резервуар 24", "Надземный - горизонтальный", 3000, 3000, unit2.Id);
-            Tanks tank4 = new("Резервуар 35", "Надземный - вертикальный", 3000, 3000, unit2.Id);
-            Tanks tank5 = new("Резервуар 47", "Подземный - двустенный", 4000, 5000, unit2.Id);
-            Tanks tank6 = new("Резервуар 256", "Подводный", 500, 500, unit3.Id);
 
-            Console.WriteLine(tank1.getInfo());
-            Console.WriteLine(tank2.getInfo());
-            Console.WriteLine(tank3.getInfo());
-            Console.WriteLine(tank4.getInfo());
-            Console.WriteLine(tank5.getInfo());
-            Console.WriteLine(tank6.getInfo());
+            Console.WriteLine("Factories:\n");
+            foreach (Factories factory in factories)
+                Console.WriteLine(factory.getInfo());
+
+            Console.WriteLine("\nUnits:");
+            foreach (Units unit in units)
+                Console.WriteLine(unit.getInfo());
+
+            Console.WriteLine("\nTanks:");
+            foreach (Tanks tank in tanks)
+                Console.WriteLine(tank.getInfo());
         }
     }
 }
