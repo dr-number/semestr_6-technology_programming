@@ -43,15 +43,21 @@ namespace LarionovClassesMessages
                 tanks.Add(new("Резервуар 256", "Подводный", 500, 500, units[2].Id));
             }
 
-            Console.WriteLine("Factories:\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Заводы ({factories.Count}):");
+            Console.ResetColor();
             foreach (Factories factory in factories)
                 Console.WriteLine(factory.getInfo());
 
-            Console.WriteLine("\nUnits:");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\nУстановки ({units.Count}):");
+            Console.ResetColor();
             foreach (Units unit in units)
                 Console.WriteLine(unit.getInfo());
 
-            Console.WriteLine("\nTanks:\n");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\nРезервуары ({tanks.Count}):");
+            Console.ResetColor();
             foreach (Tanks tank in tanks)
                 Console.WriteLine(tank.getInfo());
         }

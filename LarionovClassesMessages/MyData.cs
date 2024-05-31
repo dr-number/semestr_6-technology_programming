@@ -4,7 +4,7 @@ namespace LarionovClassesMessages
 {
     class Factories
     {
-        private static int nextId = 1;
+        private static int nextId = 0;
         public int Id { get; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -24,7 +24,7 @@ namespace LarionovClassesMessages
 
     class Units
     {
-        private static int nextId = 1;
+        private static int nextId = 0;
 
         public int Id { get; }
         public string Name { get; set; }
@@ -47,7 +47,7 @@ namespace LarionovClassesMessages
 
     class Tanks
     {
-        private static int nextId = 1;
+        private static int nextId = 0;
         public int Id { get; }
         public string Name { get; set; }
         public string Description { get; set; }
