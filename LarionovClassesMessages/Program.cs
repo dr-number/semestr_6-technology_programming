@@ -23,19 +23,8 @@ namespace LarionovClassesMessages
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Ввод данных вручную:\n");
                 factories = myInput.InputFactories();
-
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Введенные заводы:\n");
-                foreach (Factories factory in factories)
-                    Console.WriteLine(factory.getInfo());
-
-                //============================================================================
-
                 units = myInput.InputUnits(factories);
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Введенные установки:\n");
-                foreach (Factories factory in factories)
-                    Console.WriteLine(factory.getInfo());
+                tanks = myInput.InputTanks(units);
             }
             else
             {

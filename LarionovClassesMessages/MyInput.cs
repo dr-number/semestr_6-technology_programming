@@ -122,10 +122,57 @@ namespace LarionovClassesMessages
 
                 units.Add(new(UnitName, UnitDescription, FactoryId));
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Фабрика успешно добавлена!\n");
+                Console.WriteLine("Установка успешно добавлена!\n");
                 Console.ResetColor();
             }
             return units;
+        }
+
+        public List<Tanks> InputTanks(List<Units> units)
+        {
+            Console.WriteLine("Добавление установки");
+            Console.ResetColor();
+
+            string TankName = "";
+            string TankDescription = "";
+            int MaxVolume = 0;
+            int Volume = 0;
+            int UnitId = 0;
+            int UnitsCount = units.Count;
+
+            List<Tanks> tanks = new List<Tanks>();
+            MyInput myInput = new MyInput();
+
+            while (true)
+            {
+                Console.WriteLine("Введите имя резервуара: [для завершения введите \"0\"]:");
+                Console.ResetColor();
+                TankName = Console.ReadLine()?.ToLower();
+                if (TankName == "0")
+                    break;
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Введите описание резервуара: [для завершения введите \"0\"]:\n");
+                Console.ResetColor();
+                TankDescription = Console.ReadLine()?.ToLower();
+                if (TankDescription == "0")
+                    break;
+
+                MaxVolume = myInput.InputData($"Введите MaxVolume для резервуара \"{TankName}\": ");
+                Volume = myInput.InputCount($"Введите Volume для резервуара \"{TankName}\": ", MaxVolume);
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                for (int i = 0; i < UnitsCount; i++)
+                    Console.WriteLine($"[{i}] - {units[i].getInfo()}");
+
+                UnitId = myInput.InputCount("Выберите установку из предложенных вариантов: ", UnitsCount);
+
+                tanks.Add(new(TankName, TankDescription, Volume, MaxVolume, UnitId));
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Резервуар успешно добавлен!\n");
+                Console.ResetColor();
+            }
+            return tanks;
         }
     }
 
