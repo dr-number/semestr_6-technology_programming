@@ -24,7 +24,7 @@ namespace LarionovClassesMessages
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"{xStr} - не число\n");
                 }
-                else if (x <= 0 || x > maxValue)
+                else if (x < 0 || x > maxValue)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"Введите число в промежутке от 0 до {maxValue} включительно!\n");
@@ -118,7 +118,7 @@ namespace LarionovClassesMessages
                 for (int i = 0; i < FactoriesCount; i++)
                     Console.WriteLine($"[{i}] - {factories[i].getInfo()}");
 
-                FactoryId = myInput.InputCount("Выберите фабрику из предложенных вариантов: ", FactoriesCount);
+                FactoryId = myInput.InputCount("Выберите фабрику из предложенных вариантов: ", FactoriesCount-1);
 
                 units.Add(new(UnitName, UnitDescription, FactoryId));
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -165,7 +165,7 @@ namespace LarionovClassesMessages
                 for (int i = 0; i < UnitsCount; i++)
                     Console.WriteLine($"[{i}] - {units[i].getInfo()}");
 
-                UnitId = myInput.InputCount("Выберите установку из предложенных вариантов: ", UnitsCount);
+                UnitId = myInput.InputCount("Выберите установку из предложенных вариантов: ", UnitsCount-1);
 
                 tanks.Add(new(TankName, TankDescription, Volume, MaxVolume, UnitId));
                 Console.ForegroundColor = ConsoleColor.Green;
