@@ -8,7 +8,7 @@ namespace LarionovClassesMessages
 {
     internal class MyInput
     {
-        public int InputCount(string text, int maxValue, int defaultValue)
+        public int InputCount(string text, int maxValue)
         {
             string xStr = "";
             bool isNumber = false;
@@ -19,8 +19,6 @@ namespace LarionovClassesMessages
                 Console.WriteLine(text);
                 xStr = Console.ReadLine();
                 isNumber = int.TryParse(xStr, out x);
-                if (xStr == "")
-                    return defaultValue;
                 if (!isNumber)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -88,14 +86,19 @@ namespace LarionovClassesMessages
             return factories;
         }
 
-        public List<Units> InputUnits()
+        public List<Units> InputUnits(List<Factories> factories)
         {
             Console.WriteLine("Добавление установки");
             Console.ResetColor();
 
             string UnitName = "";
             string UnitDescription = "";
+            int FactoryId = 0;
+            int FactoriesCount = factories.Count;
+
             List<Units> units = new List<Units>();
+            MyInput myInput = new MyInput();
+
             while (true)
             {
                 Console.WriteLine("Введите имя установки: [для завершения введите \"0\"]:");
@@ -111,9 +114,15 @@ namespace LarionovClassesMessages
                 if (UnitDescription == "0")
                     break;
 
-                //units.Add(new(FactoryName, FactoryDescription));
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                for (int i = 0; i < FactoriesCount; i++)
+                    Console.WriteLine($"[{i}] - {factories[i].getInfo()}");
+
+                FactoryId = myInput.InputCount("Выберите фабрику из предложенных вариантов: ", FactoriesCount);
+
+                units.Add(new(UnitName, UnitDescription, FactoryId));
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Завод успешно добавлена!\n");
+                Console.WriteLine("Фабрика успешно добавлена!\n");
                 Console.ResetColor();
             }
             return units;

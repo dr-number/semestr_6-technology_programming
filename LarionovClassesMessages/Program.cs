@@ -31,10 +31,9 @@ namespace LarionovClassesMessages
 
                 //============================================================================
 
-
-                units = myInput.InputUnits();
+                units = myInput.InputUnits(factories);
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Введенные заводы:\n");
+                Console.WriteLine("Введенные установки:\n");
                 foreach (Factories factory in factories)
                     Console.WriteLine(factory.getInfo());
             }
