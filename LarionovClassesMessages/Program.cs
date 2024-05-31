@@ -91,9 +91,40 @@ namespace LarionovClassesMessages
             List<Units> units = new List<Units>();
             List<Tanks> tanks = new List<Tanks>();
 
-            if (IsQuestion("Хотите ввести данные вручную?"))
+            if (!IsQuestion("Хотите использовать данные поумолчанию? [y/n] (по умолчанию y): "))
             {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Ввод данных вручную:\n");
+                Console.WriteLine("Добавление фабрик");
+                Console.ResetColor();
 
+                string FactoryName = "";
+                string FactoryDescription = "";
+                while (true)
+                {
+                    Console.WriteLine("Введите имя фабрики: [для завершения введите \"0\"]:");
+                    Console.ResetColor();
+                    FactoryName = Console.ReadLine()?.ToLower();
+                    if (FactoryName == "0")
+                        break;
+
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Введите описание фабрики: [для завершения введите \"0\"]:\n");
+                    Console.ResetColor();
+                    FactoryDescription = Console.ReadLine()?.ToLower();
+                    if(FactoryDescription == "0")
+                        break ;
+
+                    factories.Add(new(FactoryName, FactoryDescription));
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Фабрика успешно добавлена!\n");
+                    Console.ResetColor();
+                }
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Введенные фабрики:\n");
+                foreach (Factories factory in factories)
+                    Console.WriteLine(factory.getInfo());
             }
             else
             {
