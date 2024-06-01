@@ -55,83 +55,86 @@ namespace LarionovClassesMessages
             }
             return x;
         }
-        public List<Factories> InputFactories()
+
+        public Dictionary<string, Factories> InputFactories()
         {
-            Console.WriteLine("Добавление заводов");
-            Console.ResetColor();
+            MyPrint myPrint = new MyPrint();
+            myPrint.PrintSuccess("Добавление заводов");
 
             string FactoryName = "";
             string FactoryDescription = "";
-            List<Factories> factories = new List<Factories>();
+            Dictionary<string, Factories> factories = new Dictionary<string, Factories>();
             while (true)
             {
-                Console.WriteLine("Введите имя завода: [для завершения введите \"0\"]:");
-                Console.ResetColor();
+                myPrint.PrintSuccess("Введите имя завода: [для завершения введите \"0\"]:");
                 FactoryName = Console.ReadLine()?.ToLower();
                 if (FactoryName == "0")
                     break;
 
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Введите описание завода: [для завершения введите \"0\"]:\n");
-                Console.ResetColor();
+                if (factories.ContainsKey(FactoryName))
+                {
+                    myPrint.PrintError("Завод с таким именем уже существует!\n");
+                    continue;
+                }
+
+                myPrint.PrintSuccess("Введите описание завода: [для завершения введите \"0\"]:\n");
                 FactoryDescription = Console.ReadLine()?.ToLower();
                 if (FactoryDescription == "0")
                     break;
 
-                factories.Add(new(FactoryName, FactoryDescription));
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Завод успешно добавлена!\n");
-                Console.ResetColor();
+                factories.Add(FactoryName, new(FactoryName, FactoryDescription));
+                myPrint.PrintSuccess("Завод успешно добавлена!\n");
             }
             return factories;
         }
 
-        public List<Units> InputUnits(List<Factories> factories)
+        public Dictionary<string, Units> InputUnits(Dictionary<string, Factories> factories)
         {
-            Console.WriteLine("Добавление установки");
-            Console.ResetColor();
+            MyPrint myPrint = new MyPrint();
+            myPrint.PrintSuccess("Добавление установки");
 
             string UnitName = "";
             string UnitDescription = "";
             int FactoryId = 0;
             int FactoriesCount = factories.Count;
 
-            List<Units> units = new List<Units>();
+            Dictionary<string, Units> units = new Dictionary<string, Units>();
             MyInput myInput = new MyInput();
 
             while (true)
             {
-                Console.WriteLine("Введите имя установки: [для завершения введите \"0\"]:");
-                Console.ResetColor();
+                myPrint.PrintSuccess("Введите имя установки: [для завершения введите \"0\"]:");
                 UnitName = Console.ReadLine()?.ToLower();
                 if (UnitName == "0")
                     break;
 
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Введите описание установки: [для завершения введите \"0\"]:\n");
-                Console.ResetColor();
+                if (units.ContainsKey(UnitName))
+                {
+                    myPrint.PrintError("Установка с таким именем уже существует!\n");
+                    continue;
+                }
+
+                myPrint.PrintSuccess("Введите описание установки: [для завершения введите \"0\"]:\n");
                 UnitDescription = Console.ReadLine()?.ToLower();
                 if (UnitDescription == "0")
                     break;
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 for (int i = 0; i < FactoriesCount; i++)
-                    Console.WriteLine($"[{i}] - {factories[i].getInfo()}");
+                    Console.WriteLine($"[{i}] - {factories.ElementAt(i).Value.getInfo()}");
 
                 FactoryId = myInput.InputCount("Выберите фабрику из предложенных вариантов: ", FactoriesCount-1);
 
-                units.Add(new(UnitName, UnitDescription, FactoryId));
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Установка успешно добавлена!\n");
-                Console.ResetColor();
+                units.Add(UnitName, new(UnitName, UnitDescription, FactoryId));
+                myPrint.PrintSuccess("Установка успешно добавлена!\n");
             }
             return units;
         }
 
-        public List<Tanks> InputTanks(List<Units> units)
+        public Dictionary<string, Tanks> InputTanks(Dictionary<string, Units> units)
         {
-            Console.WriteLine("Добавление установки");
-            Console.ResetColor();
+            MyPrint myPrint = new MyPrint();
+            myPrint.PrintSuccess("Добавление установки");
 
             string TankName = "";
             string TankDescription = "";
@@ -140,20 +143,23 @@ namespace LarionovClassesMessages
             int UnitId = 0;
             int UnitsCount = units.Count;
 
-            List<Tanks> tanks = new List<Tanks>();
+            Dictionary<string, Tanks> tanks = new Dictionary<string, Tanks>();
             MyInput myInput = new MyInput();
 
             while (true)
             {
-                Console.WriteLine("Введите имя резервуара: [для завершения введите \"0\"]:");
-                Console.ResetColor();
+                myPrint.PrintSuccess("Введите имя резервуара: [для завершения введите \"0\"]:");
                 TankName = Console.ReadLine()?.ToLower();
                 if (TankName == "0")
                     break;
 
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Введите описание резервуара: [для завершения введите \"0\"]:\n");
-                Console.ResetColor();
+                if (tanks.ContainsKey(TankName))
+                {
+                    myPrint.PrintError("Резервуар с таким именем уже существует!\n");
+                    continue;
+                }
+
+                myPrint.PrintSuccess("Введите описание резервуара: [для завершения введите \"0\"]:\n");
                 TankDescription = Console.ReadLine()?.ToLower();
                 if (TankDescription == "0")
                     break;
@@ -163,14 +169,12 @@ namespace LarionovClassesMessages
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 for (int i = 0; i < UnitsCount; i++)
-                    Console.WriteLine($"[{i}] - {units[i].getInfo()}");
+                    Console.WriteLine($"[{i}] - {units.ElementAt(i).Value.getInfo()}");
 
                 UnitId = myInput.InputCount("Выберите установку из предложенных вариантов: ", UnitsCount-1);
 
-                tanks.Add(new(TankName, TankDescription, Volume, MaxVolume, UnitId));
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Резервуар успешно добавлен!\n");
-                Console.ResetColor();
+                tanks.Add(TankName, new(TankName, TankDescription, Volume, MaxVolume, UnitId));
+                myPrint.PrintSuccess("Резервуар успешно добавлен!\n");
             }
             return tanks;
         }
