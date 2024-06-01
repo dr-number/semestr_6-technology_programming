@@ -95,7 +95,7 @@ namespace LarionovClassesMessages
 
             string UnitName = "";
             string UnitDescription = "";
-            int FactoryId = 0;
+            int FactoryIndex = 0;
             int FactoriesCount = factories.Count;
 
             Dictionary<string, Units> units = new Dictionary<string, Units>();
@@ -123,9 +123,9 @@ namespace LarionovClassesMessages
                 for (int i = 0; i < FactoriesCount; i++)
                     Console.WriteLine($"[{i}] - {factories.ElementAt(i).Value.getInfo()}");
 
-                FactoryId = myInput.InputCount("Выберите фабрику из предложенных вариантов: ", FactoriesCount-1);
+                FactoryIndex = myInput.InputCount("Выберите фабрику из предложенных вариантов: ", FactoriesCount-1);
 
-                units.Add(UnitName, new(UnitName, UnitDescription, FactoryId));
+                units.Add(UnitName, new(UnitName, UnitDescription, factories.ElementAt(FactoryIndex).Value.Id));
                 myPrint.PrintSuccess("Установка успешно добавлена!\n");
             }
             return units;
@@ -140,7 +140,7 @@ namespace LarionovClassesMessages
             string TankDescription = "";
             int MaxVolume = 0;
             int Volume = 0;
-            int UnitId = 0;
+            int UnitIndex = 0;
             int UnitsCount = units.Count;
 
             Dictionary<string, Tanks> tanks = new Dictionary<string, Tanks>();
@@ -171,9 +171,9 @@ namespace LarionovClassesMessages
                 for (int i = 0; i < UnitsCount; i++)
                     Console.WriteLine($"[{i}] - {units.ElementAt(i).Value.getInfo()}");
 
-                UnitId = myInput.InputCount("Выберите установку из предложенных вариантов: ", UnitsCount-1);
+                UnitIndex = myInput.InputCount("Выберите установку из предложенных вариантов: ", UnitsCount-1);
 
-                tanks.Add(TankName, new(TankName, TankDescription, Volume, MaxVolume, UnitId));
+                tanks.Add(TankName, new(TankName, TankDescription, Volume, MaxVolume, units.ElementAt(UnitIndex).Value.Id));
                 myPrint.PrintSuccess("Резервуар успешно добавлен!\n");
             }
             return tanks;
