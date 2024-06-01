@@ -17,6 +17,7 @@ namespace LarionovClassesMessages
             Dictionary<string, Tanks> tanks = new Dictionary<string, Tanks>();
             MyInput myInput = new MyInput();
             MyPrint myPrint = new MyPrint();
+            MyCalc myCalc = new MyCalc();
 
             if (!IsQuestion("Хотите использовать данные поумолчанию? [y/n] (по умолчанию y): "))
             {
@@ -53,6 +54,8 @@ namespace LarionovClassesMessages
             myPrint.PrintSuccess($"\nРезервуары ({tanks.Count}):");
             foreach (var tank in tanks)
                 Console.WriteLine(tank.Value.getInfo());
+
+            myPrint.PrintSuccess($"\nОбщий объем резервуаров: {myCalc.GetAllVolumeTanks(tanks)}");
         }
     }
 }

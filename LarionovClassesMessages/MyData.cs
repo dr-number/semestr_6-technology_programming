@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 
 namespace LarionovClassesMessages
 {
@@ -51,9 +52,9 @@ namespace LarionovClassesMessages
         public int Id { get; }
         public string Name { get; set; }
         public string Description { get; set; }
-        private int Volume { get; set; }
+        public int Volume { get; set; }
         private int MaxVolume;
-        private int UnitId { get; }
+        public int UnitId { get; }
 
         public Tanks(string name, string description, int volume, int maxVolume, int unitId)
         {
@@ -71,6 +72,18 @@ namespace LarionovClassesMessages
         public string getInfo()
         {
             return $"ID: {Id}, Name: {Name}, Description: {Description}, Volume: {Volume}, MaxVolume: {MaxVolume}, UnitId: {UnitId}";
+        }
+    }
+
+    class MyCalc
+    {
+        public int GetAllVolumeTanks(Dictionary<string, Tanks> tanks)
+        {
+            int sum = 0;
+            foreach (var tank in tanks)
+                sum += tank.Value.Volume;
+
+            return sum;
         }
     }
 }
