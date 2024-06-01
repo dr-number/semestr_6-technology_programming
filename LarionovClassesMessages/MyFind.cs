@@ -35,5 +35,19 @@ namespace LarionovClassesMessages
             }
             return result;
         }
+
+        public List<Factories> FindFactory(Dictionary<string, Factories> factories, Units unit)
+        {
+            List<Factories> result = new List<Factories>();
+
+            foreach (var factory in factories)
+            {
+                if (factory.Value.Id == unit.FactoryId)
+                {
+                    result.Add(factory.Value);
+                }
+            }
+            return result;
+        }
     }
 }

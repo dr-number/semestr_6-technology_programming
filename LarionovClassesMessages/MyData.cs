@@ -30,7 +30,7 @@ namespace LarionovClassesMessages
         public int Id { get; }
         public string Name { get; set; }
         public string Description { get; set; }
-        private int FactoryId { get; }
+        public int FactoryId { get; }
 
         public Units(string name, string description, int factoryId)
         {
