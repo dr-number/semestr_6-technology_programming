@@ -66,7 +66,7 @@ namespace LarionovClassesMessages
 
             while (IsFind)
             {
-                myPrint.PrintWarning($"Введите имя резервуара (чувствительно к регистру) чтобы получить по нему информацию (чтобы прекратить поиск введите \"0\")");
+                myPrint.PrintWarning($"Введите имя резервуара (чувствительно к регистру) чтобы получить по нему информацию (чтобы прекратить поиск введите \"0\")\n");
                 FindTankName = Console.ReadLine();
 
                 if (FindTankName == "0")
