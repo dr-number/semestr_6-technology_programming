@@ -19,7 +19,7 @@ namespace LarionovClassesMessages
 
         public string getInfo()
         {
-            return $"ID: {Id}, Name: {Name}, Description: {Description}";
+            return $"FactoryID: {Id}, Name: {Name}, Description: {Description}";
         }
     }
 
@@ -42,7 +42,7 @@ namespace LarionovClassesMessages
 
         public string getInfo()
         {
-            return $"ID: {Id}, Name: {Name}, Description: {Description}, FactoryId: {FactoryId}";
+            return $"UnitID: {Id}, Name: {Name}, Description: {Description}, FactoryId: {FactoryId}";
         }
     }
 
@@ -53,7 +53,7 @@ namespace LarionovClassesMessages
         public string Name { get; set; }
         public string Description { get; set; }
         public int Volume { get; set; }
-        private int MaxVolume;
+        public int MaxVolume { get; set; }
         public int UnitId { get; }
 
         public Tanks(string name, string description, int volume, int maxVolume, int unitId)
@@ -65,13 +65,9 @@ namespace LarionovClassesMessages
             MaxVolume = maxVolume;
             UnitId = unitId;
         }
-        public int GetMaxVolume()
-        {
-            return MaxVolume;
-        }
         public string getInfo()
         {
-            return $"ID: {Id}, Name: {Name}, Description: {Description}, Volume: {Volume}, MaxVolume: {MaxVolume}, UnitId: {UnitId}";
+            return $"TankID: {Id}, Name: {Name}, Description: {Description}, Volume: {Volume}, MaxVolume: {MaxVolume}, UnitId: {UnitId}";
         }
     }
 

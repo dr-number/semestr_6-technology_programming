@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LarionovClassesMessages
 {
@@ -12,12 +13,18 @@ namespace LarionovClassesMessages
         }
         static void Main(string[] args)
         {
+            string FindTankName = "";
+            bool IsFind = true;
+
             Dictionary<string, Factories> factories = new Dictionary<string, Factories>();
             Dictionary<string, Units> units = new Dictionary<string, Units>();
             Dictionary<string, Tanks> tanks = new Dictionary<string, Tanks>();
             MyInput myInput = new MyInput();
             MyPrint myPrint = new MyPrint();
             MyCalc myCalc = new MyCalc();
+            MyFind myFind = new MyFind();
+            List<Units> FindUnits;
+            List<Factories> FindFactories = new List<Factories>();
 
             if (!IsQuestion("Хотите использовать данные поумолчанию? [y/n] (по умолчанию y): "))
             {
@@ -55,7 +62,39 @@ namespace LarionovClassesMessages
             foreach (var tank in tanks)
                 Console.WriteLine(tank.Value.getInfo());
 
-            myPrint.PrintSuccess($"\nОбщий объем резервуаров: {myCalc.GetAllVolumeTanks(tanks)}");
+            myPrint.PrintSuccess($"\nОбщий объем резервуаров: {myCalc.GetAllVolumeTanks(tanks)}\n");
+
+            while (IsFind)
+            {
+                myPrint.PrintWarning($"Введите имя резервуара (чувствительно к регистру) чтобы получить по нему информацию (чтобы прекратить поиск введите \"0\")");
+                FindTankName = Console.ReadLine();
+
+                if (FindTankName == "0")
+                    break;
+
+                FindUnits = myFind.FindUnit(units, tanks, FindTankName);
+
+                if (FindUnits == null)
+                {
+                    myPrint.PrintError($"Резервуар с именем \"{FindTankName}\" - не найден");
+                    continue;
+                }
+
+                foreach (var unit in units)
+                    FindFactories.AddRange(myFind.FindFactory(factories, unit.Value));
+
+                myPrint.PrintWarning("Найденные результаты:");
+
+                FindFactories = FindFactories.Distinct().ToList();
+                myPrint.PrintSuccess($"Заводы ({FindFactories.Count}):");
+                foreach (var factory in FindFactories)
+                    Console.WriteLine(factory.getInfo());
+
+                FindUnits = FindUnits.Distinct().ToList();
+                myPrint.PrintSuccess($"Установки ({FindUnits.Count}):");
+                foreach (var unit in FindUnits)
+                    Console.WriteLine(unit.getInfo());
+            }
         }
     }
 }
