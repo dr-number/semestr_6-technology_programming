@@ -68,6 +68,16 @@ namespace LarionovClassesMessages
             {
                 myPrint.PrintSuccess("Введите имя завода: [для завершения введите \"0\"]:");
                 FactoryName = Console.ReadLine()?.ToLower();
+                if (FactoryName == "")
+                {
+                    myPrint.PrintError("Имя не должно быть пустым!\n");
+                    continue;
+                }
+                if (FactoryName == "0" && factories.Count == 0)
+                {
+                    myPrint.PrintError("Введите минимум один завод!\n");
+                    continue;
+                }
                 if (FactoryName == "0")
                     break;
 
@@ -105,6 +115,16 @@ namespace LarionovClassesMessages
             {
                 myPrint.PrintSuccess("Введите имя установки: [для завершения введите \"0\"]:");
                 UnitName = Console.ReadLine()?.ToLower();
+                if (UnitName == "")
+                {
+                    myPrint.PrintError("Имя не должно быть пустым!\n");
+                    continue;
+                }
+                if (UnitName == "0" && units.Count == 0)
+                {
+                    myPrint.PrintError("Введите минимум один завод!\n");
+                    continue;
+                }
                 if (UnitName == "0")
                     break;
 
@@ -150,6 +170,16 @@ namespace LarionovClassesMessages
             {
                 myPrint.PrintSuccess("Введите имя резервуара: [для завершения введите \"0\"]:");
                 TankName = Console.ReadLine()?.ToLower();
+                if (TankName == "")
+                {
+                    myPrint.PrintError("Имя не должно быть пустым!\n");
+                    continue;
+                }
+                if (TankName == "0" && tanks.Count == 0)
+                {
+                    myPrint.PrintError("Введите минимум один завод!\n");
+                    continue;
+                }
                 if (TankName == "0")
                     break;
 
