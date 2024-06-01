@@ -14,9 +14,26 @@ namespace LarionovClassesMessages
         Dictionary<string, Units> units = new Dictionary<string, Units>();
         Dictionary<string, Tanks> tanks = new Dictionary<string, Tanks>();
 
-        public void FindUnit(Dictionary<string, Units> units, Dictionary<string, Tanks> tanks, string find)
-        {
+        MyPrint myPrint = new MyPrint();
 
+        public List<Units> FindUnit(Dictionary<string, Units> units, Dictionary<string, Tanks> tanks, string find)
+        {
+            List<Units> result = new List<Units>();
+
+            if (!tanks.ContainsKey(find))
+            {
+                myPrint.PrintError($"Резервуар с именем \"{find}\" - не найден");
+                return null;
+            }
+            int UnitId = tanks[find].UnitId;
+            foreach (var unit in units)
+            {
+                if (unit.Value.Id == UnitId)
+                {
+                    result.Add(unit.Value);
+                }
+            }
+            return result;
         }
     }
 }
