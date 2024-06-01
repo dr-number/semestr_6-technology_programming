@@ -80,8 +80,8 @@ namespace LarionovClassesMessages
                     continue;
                 }
 
-                foreach (var unit in units)
-                    FindFactories.AddRange(myFind.FindFactory(factories, unit.Value));
+                foreach (var unit in FindUnits)
+                    FindFactories.AddRange(myFind.FindFactory(factories, unit));
 
                 myPrint.PrintWarning("Найденные результаты:");
 
