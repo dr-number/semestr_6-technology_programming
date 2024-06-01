@@ -3,13 +3,13 @@
 **Ввод исходных данных вручную**
 
 <p align="center">
-   <img src="https://github.com/dr-number/semestr_6-technology_programming/blob/master/screens/input_init_data.jpg">
+   <img src="https://github.com/dr-number/semestr_6-technology_programming/blob/main/screens/input_init_data.jpg">
    <p align="center">Ввод пользовательских данных</p>
 </p>
 </br>
 
 <p align="center">
-   <img src="https://github.com/dr-number/semestr_6-technology_programming/blob/master/screens/input_init_user_data_and_errors">
+   <img src="https://github.com/dr-number/semestr_6-technology_programming/blob/main/screens/input_init_user_data_and_errors">
    <p align="center">Ввод пользовательских данных с ошибками</p>
 </p>
 </br>
@@ -18,7 +18,7 @@
 
 <figure>
    <p align="center">
-      <img src="https://github.com/dr-number/semestr_6-technology_programming/blob/master/screens/find_default_data.jpg">
+      <img src="https://github.com/dr-number/semestr_6-technology_programming/blob/main/screens/find_default_data.jpg">
       <p align="center">Поиск по дефолтным данным</p>
    </p>
 </figure>
@@ -26,7 +26,7 @@
 
 <figure>
    <p align="center">
-      <img src="https://github.com/dr-number/semestr_6-technology_programming/blob/master/screens/find_user_data.jpg">
+      <img src="https://github.com/dr-number/semestr_6-technology_programming/blob/main/screens/find_user_data.jpg">
       <p align="center">Поиск по пользовательским данным</p>
    </p>
 </figure>
@@ -34,7 +34,7 @@
 
 <figure>
    <p align="center">
-      <img src="https://github.com/dr-number/semestr_6-technology_programming/blob/master/screens/tank_not_found.jpg">
+      <img src="https://github.com/dr-number/semestr_6-technology_programming/blob/main/screens/tank_not_found.jpg">
       <p align="center">Отрицательные результаты поиска</p>
    </p>
 </figure>
