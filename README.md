@@ -9,7 +9,7 @@
 </br>
 
 <p align="center">
-   <img src="https://github.com/dr-number/semestr_6-technology_programming/blob/main/screens/input_init_user_data_and_errors">
+   <img src="https://github.com/dr-number/semestr_6-technology_programming/blob/main/screens/input_init_user_data_and_errors.jpg">
    <p align="center">Ввод пользовательских данных с ошибками</p>
 </p>
 </br>
